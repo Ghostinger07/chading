@@ -8,6 +8,11 @@ Material‑UI daily journal app. Write in any language or script, add timed task
 and download your data whenever you want.
 
 <p>
+  <a href="https://ghostinger07.github.io/chading/"><img src="https://img.shields.io/badge/live-demo-6750a4?style=for-the-badge" alt="Live demo" /></a>
+  <a href="https://github.com/Ghostinger07/chading/releases/latest"><img src="https://img.shields.io/github/v/release/Ghostinger07/chading?style=for-the-badge&color=03dac6&label=download" alt="Latest release" /></a>
+</p>
+
+<p>
   <img src="https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Material--UI-5-007fff?logo=mui&logoColor=white" alt="MUI" />
@@ -15,6 +20,18 @@ and download your data whenever you want.
 </p>
 
 </div>
+
+---
+
+## Try it
+
+- **Live demo:** <https://ghostinger07.github.io/chading/> (deploys automatically from `main`)
+- **Download:** grab the latest `chading-vX.Y.Z.zip` from the [Releases page](https://github.com/Ghostinger07/chading/releases/latest), unzip, and open `index.html` — or serve the folder with any static server:
+  ```bash
+  unzip chading-v0.1.0.zip -d chading
+  cd chading
+  python3 -m http.server 8080   # then open http://localhost:8080
+  ```
 
 ---
 
@@ -116,9 +133,26 @@ Single-day Markdown export produces a standard checkbox list you can drop into a
 - [x] Tasks with time
 - [x] Material Design + dark mode
 - [x] JSON / Markdown export
+- [x] GitHub Pages live demo + versioned Releases with downloadable zip
 - [ ] Import from JSON
 - [ ] Cloud sync (optional)
 - [ ] Search across entries
+
+## Releases
+
+This repo ships two automated pipelines:
+
+- **`Deploy to GitHub Pages`** — every push to `main` rebuilds and publishes the app.
+- **`Release`** — pushing a tag that starts with `v` (e.g. `v0.1.0`) builds the app, zips `dist/`, and publishes a GitHub Release with the zip + tarball attached.
+
+To cut a release:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+You can also run the Release workflow manually from the Actions tab to produce a build artifact without tagging.
 
 ## License
 
