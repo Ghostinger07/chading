@@ -19,7 +19,8 @@ import DownloadIcon from '@mui/icons-material/Download';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import BrandMark from './components/BrandMark';
 import Sidebar from './components/Sidebar';
 import EntryEditor from './components/EntryEditor';
 import { JournalStore } from './types';
@@ -98,35 +99,36 @@ export default function App() {
   }, [store]);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        color="inherit"
-        sx={{
-          zIndex: (t) => t.zIndex.drawer + 1,
-          borderBottom: 1,
-          borderColor: 'divider',
-          backdropFilter: 'blur(8px)',
-        }}
-      >
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <AppBar position="fixed" elevation={0} color="inherit" sx={{ zIndex: (t) => t.zIndex.drawer + 1 }}>
         <Toolbar sx={{ gap: 1 }}>
           {!isDesktop && (
-            <IconButton
-              edge="start"
-              onClick={() => setDrawerOpen(true)}
-              aria-label="Open entries"
-            >
+            <IconButton edge="start" onClick={() => setDrawerOpen(true)} aria-label="Open entries">
               <MenuIcon />
             </IconButton>
           )}
-          <AutoStoriesIcon color="primary" />
-          <Typography variant="h6" sx={{ fontWeight: 700, letterSpacing: 0.2 }}>
-            Chading
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-            daily journal · any language · with tasks
-          </Typography>
+          <Stack direction="row" alignItems="center" spacing={1.25}>
+            <BrandMark size={30} />
+            <Box>
+              <Typography
+                sx={{
+                  fontFamily: '"Cormorant Garamond", Georgia, serif',
+                  fontSize: '1.55rem',
+                  lineHeight: 1,
+                  fontWeight: 500,
+                  letterSpacing: 1,
+                }}
+              >
+                Lumen
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ display: { xs: 'none', sm: 'block' }, opacity: 0.7, letterSpacing: 1.2 }}
+              >
+                a daily journal, in any language
+              </Typography>
+            </Box>
+          </Stack>
 
           <Box sx={{ flex: 1 }} />
 
@@ -148,6 +150,7 @@ export default function App() {
               onClick={() => downloadJSON(store)}
               startIcon={<DownloadIcon />}
               variant="outlined"
+              color="primary"
             >
               Export
             </Button>
@@ -172,6 +175,8 @@ export default function App() {
               boxSizing: 'border-box',
               borderRight: 1,
               borderColor: 'divider',
+              backgroundColor: 'background.default',
+              backgroundImage: 'none',
             },
           }}
         >
@@ -193,12 +198,12 @@ export default function App() {
 
       <Box component="main" sx={{ flex: 1, minWidth: 0 }}>
         <Toolbar />
-        <Container maxWidth="md" sx={{ py: { xs: 2, md: 4 } }}>
+        <Container maxWidth="md" sx={{ py: { xs: 2, md: 5 } }}>
           {entry ? (
             <Paper
               elevation={0}
               sx={{
-                p: { xs: 2, md: 4 },
+                p: { xs: 2.5, md: 5 },
                 border: 1,
                 borderColor: 'divider',
                 borderRadius: 3,
@@ -213,40 +218,47 @@ export default function App() {
             <Paper
               elevation={0}
               sx={{
-                p: { xs: 3, md: 6 },
+                p: { xs: 4, md: 8 },
                 border: 1,
                 borderColor: 'divider',
                 borderRadius: 3,
                 textAlign: 'center',
               }}
             >
-              <AutoStoriesIcon sx={{ fontSize: 56, color: 'primary.main', mb: 1 }} />
-              <Typography variant="h5" gutterBottom>
-                Start your journal
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                <BrandMark size={72} />
+              </Box>
+              <Typography variant="h4" gutterBottom>
+                Begin your Lumen.
               </Typography>
               <Typography color="text.secondary" sx={{ maxWidth: 520, mx: 'auto', mb: 3 }}>
-                Create an entry for any day, write in any language, and add tasks with times.
-                Everything stays on this device — and you can download it anytime.
+                A page a day, in any language. Add tasks with times, track your day, and
+                download your journal anytime. Everything stays on this device.
               </Typography>
-              <Stack direction="row" spacing={1} justifyContent="center">
-                <Button variant="contained" onClick={() => ensureEntry(todayISO())}>
-                  Write today&apos;s entry
-                </Button>
-              </Stack>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<EditNoteIcon />}
+                onClick={() => ensureEntry(todayISO())}
+              >
+                Write today&apos;s page
+              </Button>
             </Paper>
           )}
 
           <Stack
             direction="row"
             spacing={2}
-            sx={{ mt: 3, color: 'text.secondary' }}
+            sx={{ mt: 3, color: 'text.secondary', justifyContent: 'center' }}
             flexWrap="wrap"
             useFlexGap
           >
-            <Typography variant="caption">Entries: {stats.entries}</Typography>
+            <Typography variant="caption">Pages: {stats.entries}</Typography>
+            <Typography variant="caption">·</Typography>
             <Typography variant="caption">
               Tasks: {stats.doneTasks}/{stats.totalTasks} done
             </Typography>
+            <Typography variant="caption">·</Typography>
             <Typography variant="caption">Saved locally in your browser</Typography>
           </Stack>
         </Container>

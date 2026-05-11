@@ -1,9 +1,9 @@
 {
-  "name": "chading",
+  "name": "lumen",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Chading — a multilingual daily journal with tasks, built with React and Material UI.",
+  "description": "Lumen — a multilingual daily journal with timed tasks, built with React and Material UI.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

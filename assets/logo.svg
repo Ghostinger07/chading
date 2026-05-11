@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Lumen">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1824"/>
+      <stop offset="100%" stop-color="#0F0E13"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FEF3C7"/>
+      <stop offset="55%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <circle cx="64" cy="70" r="44" fill="url(#halo)"/>
+  <g transform="translate(44,26)">
+    <path d="M20 4
+             C 10 22, 6 32, 12 44
+             C 16 38, 20 36, 24 40
+             C 20 28, 30 20, 30 8
+             C 36 18, 42 30, 40 44
+             C 38 62, 26 76, 12 72
+             C 0 68, -4 56, 4 46
+             C 8 54, 16 56, 18 50
+             C 12 42, 12 28, 20 4 Z"
+          fill="url(#flame)"/>
+    <circle cx="18" cy="52" r="4" fill="#FEF3C7" opacity="0.9"/>
+  </g>
+</svg>

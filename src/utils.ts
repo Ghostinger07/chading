@@ -33,7 +33,7 @@ export function downloadJSON(store: JournalStore): void {
     type: 'application/json',
   });
   const url = URL.createObjectURL(blob);
-  triggerDownload(url, `chading-journal-${todayISO()}.json`);
+  triggerDownload(url, `lumen-journal-${todayISO()}.json`);
   URL.revokeObjectURL(url);
 }
 
@@ -41,7 +41,7 @@ export function downloadEntryMarkdown(entry: JournalEntry): void {
   const md = entryToMarkdown(entry);
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
-  triggerDownload(url, `chading-${entry.date}.md`);
+  triggerDownload(url, `lumen-${entry.date}.md`);
   URL.revokeObjectURL(url);
 }
 

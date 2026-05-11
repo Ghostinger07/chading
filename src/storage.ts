@@ -1,6 +1,8 @@
 import { JournalEntry, JournalStore } from './types';
 
-const KEY = 'chading.journal.v1';
+// New Lumen key, with a one-time migration from the previous "chading.*" key.
+const KEY = 'lumen.journal.v1';
+const LEGACY_KEY = 'chading.journal.v1';
 
 function emptyStore(): JournalStore {
   return { version: 1, entries: {} };
@@ -8,11 +10,15 @@ function emptyStore(): JournalStore {
 
 export function loadStore(): JournalStore {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY);
     if (!raw) return emptyStore();
     const parsed = JSON.parse(raw) as JournalStore;
     if (!parsed || parsed.version !== 1 || typeof parsed.entries !== 'object') {
       return emptyStore();
+    }
+    // Migrate into new key on first read.
+    if (!localStorage.getItem(KEY) && localStorage.getItem(LEGACY_KEY)) {
+      localStorage.setItem(KEY, raw);
     }
     return parsed;
   } catch {
